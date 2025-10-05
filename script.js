@@ -1,37 +1,51 @@
+var raceStarted = false;
+
+setTimeout(() => {
+  raceStarted = true;
+}, 3100);
+
+$(document).keyup(function (event) {
+  if (event.key === " " && !raceStarted) {
+    $("body").append("<div>FALSE START</div>");
+    window.location.reload();
+  }
+});
+
 var character = $("#character");
 var leftValue = 0;
 character.fms = false;
+character.name = "You";
 
 var bot1 = $("#bot1");
 var leftValue1 = 0;
 var bot1Speed;
-bot1.leftvalue;
+bot1.leftvalue = parseFloat(bot1.css("left"));
 bot1.name = "Black";
 bot1.fms = false;
 
 var bot2 = $("#bot2");
 var leftValue2 = 0;
 var bot2Speed;
-bot2.leftvalue = leftValue2;
+bot2.leftvalue = parseFloat(bot2.css("left"));
 bot2.name = "Green";
 bot2.fms = false;
 
 var bot3 = $("#bot3");
 var leftValue3 = 0;
 var bot3Speed;
-bot3.leftvalue = leftValue3;
+bot3.leftvalue = parseFloat(bot3.css("left"));
 bot3.name = "Yellow";
 bot3.fms = false;
 
 var bot4 = $("#bot4");
 var leftValue4 = 0;
 var bot4Speed;
-bot4.leftvalue = leftValue4;
+bot4.leftvalue = parseFloat(bot4.css("left"));
 bot4.name = "Blue";
 bot4.fms = false;
 
-var bots = [bot1, bot2, bot3, bot4];
-
+var players = [bot1, bot2, bot3, bot4, character];
+var timer = 0;
 var countdownTimeLeft = 3;
 setTimeout(function () {
   $(document).keyup(function (event) {
@@ -40,7 +54,7 @@ setTimeout(function () {
       character.css({
         left: leftValue + "px",
       });
-    } else if (event.key !== " ") {
+    } else if (event.key !== " " && leftValue < 950) {
       $("#info").text("press space to run");
       setTimeout(() => {
         $("#info").text(" ");
@@ -110,17 +124,22 @@ setTimeout(function () {
 }, 3000);
 
 setInterval(() => {
-  bots.forEach((bot) => {
-    if (parseInt(bot.css("left")) >= 950 && !bot.fms) {
-      $("body").append("<p>" + bot.name + " is finished!</p>");
-      bot.fms = true;
+  players.forEach((player) => {
+    if (parseFloat(player.css("left")) >= 950 && !player.fms) {
+      $("#info").append(
+        "<p>" +
+          player.name +
+          " finished with a time of " +
+          timer / 1000 +
+          " secs</p>"
+      );
+
+      $("p").css({
+        bottom: "50px",
+      });
+      player.fms = true;
     }
   });
-
-  if (leftValue >= 950 && !character.fms) {
-    $("body").append("<p>You finished!</p>");
-    character.fms = true;
-  }
 }, 1);
 
 $("#info").text(countdownTimeLeft);
@@ -137,3 +156,10 @@ var countdown = setInterval(() => {
     }, 1000);
   }
 }, 1000);
+
+setTimeout(() => {
+  setInterval(() => {
+    timer += 10;
+    $("#timer").html(timer / 1000 + " secs");
+  }, 10);
+}, 3000);
