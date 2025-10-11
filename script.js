@@ -1,4 +1,11 @@
+var bestTime = localStorage.getItem("bestTime");
 var raceStarted = false;
+var gunShot = new Audio("pistolshot.mp3");
+$("#bestTimeInd").text("Your PB is " + bestTime);
+
+$(window).on("keydown", function (event) {
+  if (event.code === "Space") event.preventDefault();
+});
 
 setTimeout(() => {
   raceStarted = true;
@@ -6,7 +13,7 @@ setTimeout(() => {
 
 $(document).keyup(function (event) {
   if (event.key === " " && !raceStarted) {
-    $("body").append("<div>FALSE START</div>");
+    $("#timer").append("FALSE START");
     window.location.reload();
   }
 });
@@ -76,7 +83,7 @@ setTimeout(function () {
       });
     }
   }, bot1Speed);
-}, 3000);
+}, 3100);
 
 setInterval(() => {
   bot2Speed = Math.random() * (150 - 130) + 130;
@@ -91,7 +98,7 @@ setTimeout(function () {
       });
     }
   }, bot2Speed);
-}, 3000);
+}, 3100);
 
 setInterval(() => {
   bot3Speed = Math.random() * (150 - 130) + 130;
@@ -106,7 +113,7 @@ setTimeout(function () {
       });
     }
   }, bot3Speed);
-}, 3000);
+}, 3100);
 
 setInterval(() => {
   bot4Speed = Math.random() * (150 - 130) + 130;
@@ -121,7 +128,7 @@ setTimeout(function () {
       });
     }
   }, bot4Speed);
-}, 3000);
+}, 3100);
 
 setInterval(() => {
   players.forEach((player) => {
@@ -138,19 +145,28 @@ setInterval(() => {
         bottom: "50px",
       });
       player.fms = true;
+
+      if (player.name === "You" && timer / 1000 < bestTime) {
+        localStorage.setItem("bestTime", timer / 1000);
+        $("#bestTimeInd").text("NEW PB");
+        $("#bestTimeInd").css({
+          "font-size": "50px",
+        });
+      }
     }
   });
 }, 1);
 
-$("#info").text(countdownTimeLeft);
+$("#info").text("Ready,");
 
 var countdown = setInterval(() => {
   countdownTimeLeft--;
-  $("#info").text(countdownTimeLeft);
+  $("#info").text("Set,");
 
   if (countdownTimeLeft <= 0) {
     clearInterval(countdown);
     $("#info").text("GO!");
+    gunShot.play();
     setTimeout(() => {
       $("#info").text(" ");
     }, 1000);
@@ -160,6 +176,6 @@ var countdown = setInterval(() => {
 setTimeout(() => {
   setInterval(() => {
     timer += 10;
-    $("#timer").html(timer / 1000 + " secs");
+    $("#timer").html(timer / 1000 + "secs");
   }, 10);
 }, 3000);

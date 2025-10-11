@@ -7,60 +7,69 @@
 #info {
   position: relative;
   left: 1100px;
-  bottom: 300px;
+  bottom: 800px;
 }
 
 #character {
-  width: 50px;
-  height: 50px;
-  background-color: red;
-  border: 3px, solid, black;
   position: relative;
   transition: left 0.25s;
 }
 
-#bot1 {
+#justincase {
   width: 50px;
   height: 50px;
-  background-color: black;
-  border: 3px, solid, red;
+  background-color: red;
+  border: 3px, solid, black;
+}
+
+#bot1 {
+  filter: sepia(1) saturate(10) hue-rotate(15deg) brightness(0);
   position: relative;
   transition: left 0.25s;
 }
 
 #bot2 {
-  width: 50px;
-  height: 50px;
-  background-color: green;
-  border: 3px, solid, black;
+  filter: hue-rotate(120deg);
   position: relative;
   transition: left 0.25s;
 }
 
 #bot3 {
-  width: 50px;
-  height: 50px;
-  background-color: yellow;
-  border: 3px, solid, black;
+  filter: sepia(1) saturate(10) hue-rotate(15deg) brightness(1.5);
   position: relative;
   transition: left 0.25s;
 }
 
 #bot4 {
-  width: 50px;
-  height: 50px;
-  background-color: blue;
-  border: 3px, solid, black;
+  filter: hue-rotate(240deg);
   position: relative;
   transition: left 0.25s;
 }
 
 #finishLine {
   width: 10px;
-  height: 400px;
+  height: 550px;
   background-color: white;
   border: 3px, solid, black;
   position: relative;
   left: 1000px;
-  bottom: 275px;
+  bottom: 515px;
+}
+
+#timer {
+  position: relative;
+  left: 1100px;
+  bottom: 800px;
+}
+
+#playAgain {
+  position: relative;
+  left: 1100px;
+  bottom: 800px;
+}
+
+#bestTimeInd {
+  position: relative;
+  left: 1100px;
+  bottom: 800px;
 }
