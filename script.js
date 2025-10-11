@@ -1,7 +1,13 @@
+var buttonClick = false;
 var bestTime = localStorage.getItem("bestTime");
 var raceStarted = false;
 var gunShot = new Audio("pistolshot.mp3");
 $("#bestTimeInd").text("Your PB is " + bestTime);
+
+if (bestTime == null || bestTime == 1000000) {
+  $("#bestTimeInd").text("You haven't ran yet, so you don't have a PB");
+  localStorage.setItem("bestTime", 1000000);
+}
 
 $(window).on("keydown", function (event) {
   if (event.code === "Space") event.preventDefault();
