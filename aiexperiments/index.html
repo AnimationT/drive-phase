@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drive Phase — AI Experiments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="hud">
+        <h1>Drive Phase <span>AI Experiment Build</span></h1>
+        <div class="hud-row">
+          <p id="info">Ready…</p>
+          <p id="timer">0.000s</p>
+          <p id="bestTimeInd">PB: --</p>
+        </div>
+        <p class="help">Tap <kbd>Space</kbd> in rhythm after GO. Pressing early is a false start.</p>
+      </header>
+
+      <section id="track" aria-label="Sprint track">
+        <div id="finishLine" aria-hidden="true"></div>
+      </section>
+
+      <section id="resultsPanel" class="results" aria-live="polite">
+        <h2>Results</h2>
+        <ol id="results"></ol>
+      </section>
+
+      <button id="playAgain" type="button">Restart / Play Again</button>
+    </main>
+  </body>
+</html>
